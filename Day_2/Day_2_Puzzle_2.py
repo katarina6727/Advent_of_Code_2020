@@ -6,13 +6,11 @@ t = 0
 p = open('pass_input.txt')
 
 # go through every password in the input file
-for line in p.readlines():
+for position, line in enumerate(p.readlines()):
     # # separate the policy and the password and assign them to their respective variables
-    # separator = line.find(":")
-    # policy = line[0:separator]
-    # password = line[separator+2:len(line)-1]
-    policy = "12-20 t"
-    password = "abcdefghijklmopqrstuv"
+    separator = line.find(":")
+    policy = line[0:separator]
+    password = line[separator+2:len(line)-1]
     # # separate the policy to get the necessary information into their own variables
     nbrSeparator = policy.find("-")
     letterSeparator = policy.find(" ")
@@ -22,16 +20,19 @@ for line in p.readlines():
     # start the number of letters found in the password at zero
     letterCount = 0
     # check if the letters at the locations given are the letter required in the policy
-    if (password[nbr1-1:nbr1] == letter):
-        letterCount += 1
-    if (password[nbr2-1:nbr2] == letter):
-        letterCount += 1
-    print(letterCount, letter, password[nbr1-1:nbr1], password[nbr2-1:nbr2])
+    try:
+        if (password[nbr1-1] == letter):
+            letterCount += 1
+        if (password[nbr2-1] == letter):
+            letterCount += 1
+    except:
+        print(nbr1, nbr2, "hit an error")
+    # print(letterCount, letter, password[nbr1-1:nbr1], password[nbr2-1:nbr2])
     # if the password fulfilled its policy, add one to the number of valid passwords
     if (letterCount == 1):
         validPasswords += 1
-        print("valid")
-    break
+        # print(password, position)
+    
 
 p.close()
 
