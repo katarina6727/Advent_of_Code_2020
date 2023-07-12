@@ -43,30 +43,5 @@ for line in f.readlines():
         
 f.close()
 
-# run the code one more time with some modifications for the last passport
-# if there are any separate lines in the passport data, replace them with a space
-if (passportData.index("\n") != -1):
-    passportData = passportData.replace("\n", " ")
-# separate each piece of data into a list by finding the spaces between pieces of data
-while (passportData.find(" ") != -1):
-    index = passportData.find(" ")
-    dataList.append(passportData[:index])
-    passportData = passportData[index+1:]
-if (passportData != ""):
-    dataList.append(passportData)
-# add to the valid passport count if the passport has all 8 required fields
-length = len(dataList)
-if (length > 7):
-    validPassports += 1
-# if the passport only has 7 of the 8 required fields determine if the missing field is the country ID. If it is, add to the
-# valid passport count
-elif (length == 7):
-    for i in range(7):
-        dataPiece = dataList[i]
-        if (dataPiece.find("cid") != -1):
-            valid = False
-    if valid:
-        validPassports += 1
-
 # print the total number of valid passports
 print("There are", validPassports, "valid passports")
