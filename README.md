@@ -8,6 +8,10 @@ git add filename-or-folder
 
 git status
 
+#to create a commit once you have staged all your files
+
+git commit -m "A short description of what I'm committing"
+
 #to push your local changes to the repository
 
 git push
